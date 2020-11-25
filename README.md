@@ -10,11 +10,11 @@ Also, Livly provides a clear overview Home page, where you can observe the most 
 This enables simple, fast, reliable, and transparent leave management within your team.
 
 **ToDo :**
-- Web portal for company preferences (daily notification time, leave types, approvers, etc.)
+- [ ] Web portal for company preferences (daily notification time, leave types, approvers, etc.)
 and leave management (list all leaves, CRUD leaves, leave reports)
-- Google Calendar, Outlook, iCloud Calendar sync
-- See how many days off the user have remaining
-- Approver can leave a comment when approving leave(s)
+- [ ] Google Calendar, Outlook, iCloud Calendar sync
+- [ ] See how many days off the user have remaining
+- [ ] Approver can leave a comment when approving leave(s)
 
 **Contribute:**
 
