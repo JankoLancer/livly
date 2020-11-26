@@ -20,6 +20,8 @@ and leave management (list all leaves, CRUD leaves, leave reports)
 
 You can help make Livly the best Slack Leave Managament tool. Feel free to report bugs, improvement ideas or start working on some from ToDo list. **Contact us** if you want to help and work together with us!
 
+![Slack leave request flow](https://github.com/JankoLancer/livly/blob/main/images/flow.gif)
+
 ## API & Features
 
 This app uses:
