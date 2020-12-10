@@ -1,0 +1,31 @@
+{
+  "name": "livly",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Livly - Slack leave management tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "authors": [
+    "Janko Djuric  <janko.djuric22@gmail.com>",
+    "Natalija Ostojic <natalija.ostojic64@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": ">=0.18.1",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "tsscmp": "^1.0.6",
+    "request": "^2.88.2",
+    "aws-sdk": "^2.803.0",
+    "uuid": "^8.3.1",
+    "cron": "^1.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
