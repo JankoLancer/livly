@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Checkout source code
+      uses: actions/checkout@v1
+    
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_SLACK_CLIENT_ID: ${{ secrets.SLACK_CLIENT_ID }}
+        envkey_SLACK_CLIENT_SECRET: ${{ secrets.SLACK_CLIENT_SECRET }}
+        envkey_SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+        envkey_AWS_ID: ${{ secrets.AWS_ID }}
+        envkey_AWS_KEY: ${{ secrets.AWS_KEY }}
+        envkey_DB_TYPE: aws
+ 
+    - uses: "finnp/create-file-action@master"
+      env:
+        FILE_NAME: ".platform/nginx/nginx.conf"
+        FILE_DATA: ${{ secrets.NGINX_SSL_CONF }}
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+      
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v14
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Livly
+        environment_name: Livly-env
+        version_label: 1.0.0
+        region: eu-west-1
+        deployment_package: deploy.zip
