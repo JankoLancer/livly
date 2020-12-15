@@ -31,7 +31,9 @@ jobs:
         envkey_DB_TYPE: aws
    
     - name: Create platform file
-      run: mkdir .platform && mkdir .platform/nginx && touch .platform/nginx/nginx.conf && echo  ${{ secrets.NGINX_SSL_CONF }} > .platform/nginx/nginx.conf
+      env:
+        nginxconf: ${{ secrets.NGINX_SSL_CONF }}
+      run: mkdir .platform && mkdir .platform/nginx && touch .platform/nginx/nginx.conf && echo "$nginxconf" > .platform/nginx/nginx.conf
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
