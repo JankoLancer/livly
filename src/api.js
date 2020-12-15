@@ -10,7 +10,6 @@ const db = require("./database/dbhelperAWS");
  * helper function to call POST methods of Slack API
  */
 const callAPIMethodPost = async (method, teamId, payload) => {
-  console.log(method, teamId, payload);
   const token = await db.getToken(teamId);
   let result = await axios.post(`${apiUrl}/${method}`, payload, {
     headers: { Authorization: "Bearer " + token }
@@ -59,7 +58,6 @@ const inviteAllUsersToChannel = async teamId => {
     channel: channel,
     users: allUsers.join(",")
   });
-  console.log(res);
   return res;
 };
 

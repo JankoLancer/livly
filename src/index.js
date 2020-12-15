@@ -54,6 +54,10 @@ app.get("/auth", function (req, res) {
         const accessToken = JSON.parse(body).access_token;
 
         await db.saveCredential(teamId, accessToken);
+        const cred = await db.getCredential(teamId);
+        if (cred != null){
+          scheduleCron(cred);
+        }
 
         res.redirect("https://slack.com/app_redirect?app=A01D5Q5J6TG");
       }
@@ -162,14 +166,6 @@ app.post("/interactions", async (req, res) => {
   return res.status(404).send();
 });
 
-const notify = async () => {
-  const creds = await db.getAllCredential();
-  for (var i = 0; i < creds.length; i++) {
-    notifyAboutTodayLeaves(creds[i].teamId);
-  }
-
-  return res.status(200).send();
-}
 
 const notifyAboutTodayLeaves = async teamId => {
   const teamChannel = await db.getChannel(teamId);
@@ -399,13 +395,38 @@ const handleViewSubmission = async (payload, res, teamId) => {
   }
 };
 
+const scheduleCron = async (cred) => {
+  var exp = cred.notifyMinutes + " " + cred.notifyHours + " * * 1-5";
+
+  var job = new CronJob(
+    exp,
+    function () {
+      console.log("Cron fired for: " + cred.teamId);
+      notifyAboutTodayLeaves(cred.teamId);
+    },
+    null,
+    true,
+    cred.timezone
+  );
+  job.start();
+
+  console.log("Created CRON for: " +  cred.teamId + " " + exp);
+}
+
+const scheduleAllCrons = async () => {
+  const creds = await db.getAllCredential();
+  for (var i = 0; i < creds.length; i++) {
+    scheduleCron(creds[i]);
+  }
+}
+
 const server = app.listen(process.env.PORT || 5000, () => {
   console.log(
     "Express server listening on port %d in %s mode",
     server.address().port,
     app.settings.env
   );
-  
+
   const awsconfig = {
     accessKeyId: process.env.AWS_ID,
     secretAccessKey: process.env.AWS_KEY,
@@ -413,15 +434,5 @@ const server = app.listen(process.env.PORT || 5000, () => {
   };
   aws.config.update(awsconfig);
 
+  scheduleAllCrons();
 });
-
-var job = new CronJob(
-  "*/30 * * * *",
-  function() {
-    notify();
-  },
-  null,
-  true,
-  "America/Los_Angeles"
-);
-job.start();

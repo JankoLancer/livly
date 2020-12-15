@@ -83,7 +83,10 @@ async function saveCredential(teamId, token) {
     TableName: "credential",
     Item: {
       teamId: teamId,
-      accessToken: token
+      accessToken: token,
+      timezone: "Etc/UTC",
+      notifyHours: 7,
+      notifyMinutes: 30
     }
   };
 
@@ -130,7 +133,6 @@ async function getAllCredential() {
 async function getCredential(teamId) {
   const params = {
     TableName: "credential",
-    ProjectionExpression: "#team, accessToken, channelId",
     FilterExpression: "#team = :teamID",
     ExpressionAttributeNames: {
       "#team": "teamId"
@@ -391,6 +393,7 @@ module.exports = {
   deleteCredential,
   addChannelToCredential,
   getToken,
+  getCredential,
   getChannel,
   updateLeaveMsg,
   getActiveLeaves,
