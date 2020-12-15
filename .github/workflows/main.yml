@@ -29,11 +29,9 @@ jobs:
         envkey_AWS_ID: ${{ secrets.AWS_ID }}
         envkey_AWS_KEY: ${{ secrets.AWS_KEY }}
         envkey_DB_TYPE: aws
- 
-    - uses: "finnp/create-file-action@master"
-      env:
-        FILE_NAME: ".platform/nginx/nginx.conf"
-        FILE_DATA: ${{ secrets.NGINX_SSL_CONF }}
+   
+    - name: Create platform file
+      run: mkdir .platform && mkdir .platform/nginx && touch .platform/nginx/nginx.conf && echo  ${{ secrets.NGINX_SSL_CONF }} > .platform/nginx/nginx.conf
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
