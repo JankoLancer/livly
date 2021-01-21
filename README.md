@@ -6,12 +6,12 @@
 You can request for vacation, sick, and other types of leave, and only a chosen approver can approve/deny requests. Whenever a new request is created, approver get notification in their personal chats. After each approved/denied leave request, the user gets a notification.
 
 Livly offers daily notifications about who's on leave that day. You don't need to remember it, Livly will remember for you.
-Also, Livly provides a clear overview Home page, where you can observe the most important data about your team's leaves.
+Also, Livly provides a clear overview Home page, where you can observe the most important data about your team's leave.
 This enables simple, fast, reliable, and transparent leave management within your team.
 
 **ToDo :**
 - [ ] Web portal for company preferences (daily notification time, leave types, approvers, etc.)
-and leave management (list all leaves, CRUD leaves, leave reports)
+and leave management (list all leave, CRUD leave, leave reports)
 - [ ] Google Calendar, Outlook, iCloud Calendar sync
 - [ ] See how many days off the user have remaining
 - [ ] Approver can leave a comment when approving leave(s)
@@ -31,9 +31,9 @@ This app uses:
     - `app_uninstalled` Receive event when app is deleted from workspace. This allow us to delete token for that workspace.
     
  - Bot Token Scopes
-    - `channels:join` to join publich channel so Livly can post leaves notifications
+    - `channels:join` to join publich channel so Livly can post leave notifications
     - `channels:read` to show all channels that Livly can join
-    - `chat:write` to send notifications about new leaves in public channel
+    - `chat:write` to send notifications about new leave in public channel
     - `im:history` to view messages and other content in direct messages that livly has been added to 
     - `im:write` to send messages to private chat with users 
     - `team:read` to read basic information about workspace

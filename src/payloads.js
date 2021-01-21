@@ -9,14 +9,14 @@ module.exports = {
     return {
       channel: context.channel,
       text:
-        ":wave: Hello there mate! I'm here to help you manage your leaves so your team knows when you are OOO. To start click on button bellow to create leave.",
+        ":wave: Hello there mate! I'm here to help you manage your leave so your team knows when you are OOO. To start click on button bellow to create leave.",
       blocks: [
         {
           type: "section",
           text: {
             type: "mrkdwn",
             text:
-              ":wave: Hello there mate! I'm here to help you manage your leaves so your team knows when you are OOO. To start click on button bellow to create leave."
+              ":wave: Hello there mate! I'm here to help you manage your leave so your team knows when you are OOO. To start click on button bellow to create leave."
           }
         },
         {
@@ -170,7 +170,7 @@ module.exports = {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: `:mage: Hello there <@${context.userId}>! It's your pal Livly :seedling:. I'm here to help you manage your leaves so your team knows when you are OOO. To start click on button bellow to create leave.`
+            text: `:mage: Hello there <@${context.userId}>! It's your pal Livly :seedling:. I'm here to help you manage your leave so your team knows when you are OOO. To start click on button bellow to create leave.`
           }
         },
         ...context.errBlocks,
@@ -193,7 +193,7 @@ module.exports = {
           type: "header",
           text: {
             type: "plain_text",
-            text: ":clock7: Active leaves",
+            text: ":clock7: Active leave",
             emoji: true
           }
         },
@@ -205,7 +205,7 @@ module.exports = {
           type: "header",
           text: {
             type: "plain_text",
-            text: ":date: Upcoming leaves",
+            text: ":date: Upcoming leave",
             emoji: true
           }
         },
@@ -217,7 +217,7 @@ module.exports = {
           type: "header",
           text: {
             type: "plain_text",
-            text: ":hourglass_flowing_sand: Pending leaves",
+            text: ":hourglass_flowing_sand: Pending leave",
             emoji: true
           }
         },
@@ -742,7 +742,7 @@ module.exports = {
   notify_leaves: context => {
     return {
       channel: context.channel,
-      text: `:loudspeaker: Today leaves list is ready!`,
+      text: `:loudspeaker: Today leave list is ready!`,
       blocks: [
         {
           type: "section",
