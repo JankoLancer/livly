@@ -46,6 +46,6 @@ jobs:
         application_name: Livly
         environment_name: Livly-env
         use_existing_version_if_available: true
-        version_label: 1.0.${GITHUB_RUN_NUMBER}
+        version_label: ${GITHUB_RUN_NUMBER}
         region: eu-west-1
         deployment_package: deploy.zip
