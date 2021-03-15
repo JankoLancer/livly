@@ -41,7 +41,7 @@ jobs:
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v16
       env:
-        version: ${{ GITHUB_RUN_NUMBER }}
+        version: ${{ env.GITHUB_RUN_NUMBER }}
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
