@@ -39,13 +39,13 @@ jobs:
       run: zip -r deploy.zip . -x '*.git*'
       
     - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v14
+      uses: einaregilsson/beanstalk-deploy@v16
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: Livly
         environment_name: Livly-env
         use_existing_version_if_available: true
-        version_label: 1.0.$GITHUB_RUN_ID
+        version_label: ${{env.GITHUB_RUN_NUMBER}}
         region: eu-west-1
         deployment_package: deploy.zip
