@@ -48,6 +48,6 @@ jobs:
         application_name: Livly
         environment_name: Livly-env
         use_existing_version_if_available: true
-        version_label: ${{ VERSION }}
+        version_label: ${{ env.VERSION }}
         region: eu-west-1
         deployment_package: deploy.zip
